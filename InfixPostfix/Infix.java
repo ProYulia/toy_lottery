@@ -4,21 +4,18 @@ import java.util.Stack;
 
 public class Infix {
     private String infix;
+    private String postfix = "";
 
     public String getInfix() {
         return infix;
     }
     public void setInfix(String infix) {
         this.infix = infix;
+        convertToPostfix();
     }
 
     public String getPostfix() {
-        convertToPostfix();
         return postfix;
-    }
-
-    public void setPostfix(String postfix) {
-        this.postfix = postfix;
     }
 
     @Override
@@ -32,14 +29,19 @@ public class Infix {
             char n = infix.charAt(i);
             if (Character.isDigit(n)) {
                 int num = 0;
-                while (Character.isDigit(n)) {
-                    num = 0;
-                    num = num * 10 + num;
-                    i++;
-                    n = infix.charAt(i);
+                if (i != infix.length()-1) {
+                    while (Character.isDigit(n)) {
+                        num = num * 10 + Character.digit(n, 10);
+                        i++;
+                        n = infix.charAt(i);
+                    }
+                    i--;
+                    postfix += num;
                 }
-                i--;
-                postfix += num;
+                else {
+                    postfix += n;
+                }
+
             }
 
             else if (n == ')') {
