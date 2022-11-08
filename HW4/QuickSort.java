@@ -8,7 +8,9 @@ public class QuickSort {
     }
 
     public static void arrSort(int[] array, int left, int right) {
-        int pivot = (left + right) / 2;
+        if (array.length == 0 || left >= right)
+            return;
+        int pivot = right + (left - right) / 2;
         int i = left, j = right;
 
         while (i <= j) {
