@@ -38,10 +38,8 @@ public class Infix {
                     i--;
                     postfix += num;
                 }
-                else {
+                else
                     postfix += n;
-                }
-
             }
 
             else if (n == ')') {
@@ -60,6 +58,5 @@ public class Infix {
             postfix += stack.peek();
             stack.pop();
         }
-
     }
 }
